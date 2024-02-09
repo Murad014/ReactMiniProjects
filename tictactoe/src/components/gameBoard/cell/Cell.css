@@ -1,0 +1,6 @@
+.cell{
+    border-style: double solid;
+    text-align: center;
+    font-size: 100px;
+    font-family: 'Plateaux', sans-serif;
+}

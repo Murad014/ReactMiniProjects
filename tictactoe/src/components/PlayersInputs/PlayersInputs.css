@@ -1,0 +1,22 @@
+.player-inputs{
+    display: flex;
+    flex-direction: row;
+}
+
+.editAndSave {
+    color: #ff9800;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 15px;
+    padding-top: 10px;
+
+}
+
+.active{
+    color: #b99402;
+    font-weight: bold;
+}
+
+.editAndSave:hover {
+    color: #d2a100;
+}
