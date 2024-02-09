@@ -1,0 +1,34 @@
+.game-content{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+
+    margin-top: 20px;
+}
+
+div > input{
+    margin: 10px;
+}
+
+
+input[type=text], select {
+    width: 100%;
+    padding: 2px 2px;
+    display: inline-block;
+    border: 1px solid #f19d0d;
+    background-color: #fff8f8;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: 'KUCHAR', sans-serif;
+
+
+}
+input[type="text"]:focus {
+    border: none;
+    outline: none;
+}
+
+
+

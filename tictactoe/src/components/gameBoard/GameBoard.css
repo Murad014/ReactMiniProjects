@@ -1,0 +1,7 @@
+.game-board{
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 1px;
+    width: 420px;
+    height: 395px;
+}
