@@ -1,11 +1,15 @@
 import "./PlayerInput.css";
 import {useState} from "react";
 
-export default function PlayerInput({type, isEdit, defaultValue, ...props}) {
+export default function PlayerInput({type, isEdit, symbol,
+                                        setPlayerName, defaultValue, ...props}) {
     let [playerName, setPlayerOneName] = useState(defaultValue);
 
     function handleChange(event) {
-        setPlayerOneName(event.target.value);
+        const playerName = event.target.value;
+        setPlayerOneName(playerName);
+
+        setPlayerName(symbol, playerName);
     }
 
     return isEdit ?
