@@ -2,7 +2,7 @@ import "./GameOver.css";
 import Button from "../buttons/button/Button";
 import ModalBox from "../modalBox/ModalBox";
 
-export default function GameOver({moves, active, resetClick, message}){
+export default function GameOver({moves, active, handleReset, message}){
     const moveContent = (
         <div className="move-content">
             <div className="">
@@ -10,7 +10,7 @@ export default function GameOver({moves, active, resetClick, message}){
                 <p >{message}</p>
             </div>
 
-            <Button className="close" onClick={resetClick}>Reset</Button>
+            <Button className="close" onClick={handleReset}>Reset</Button>
         </div>
     );
 
