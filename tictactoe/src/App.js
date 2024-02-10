@@ -119,7 +119,12 @@ function App() {
     function handleReset(){
         changeMoves([]);
 
-        console.log(moves);
+        // Reset initial board
+        for(let row = 0; row < 3; row++)
+            for(let col = 0; col < 3; col++)
+                initialBoard[row][col] = "_";
+        setModelClose();
+
     }
 
 
@@ -132,8 +137,8 @@ function App() {
             <GameBoard moves={moves} handleSymbolChange={handleCurrentSymbol} board={initialBoard}/>
             <Buttons onModalClick={setModalOpen} handleReset={handleReset}/>
             <MoveContent moves={moves} active={movesModal} closeClick={setModelClose} />
-            {winner !== "_" ? <GameOver active={true} message={playerNames[winner] + " is winner!"}/> : null}
-            {moves.length === 9 ? <GameOver active={true} message="DRAW!"/> : null}
+            {winner !== "_" ? <GameOver handleReset={handleReset} active={true} message={playerNames[winner] + " is winner!"}/> : null}
+            {moves.length === 9 ? <GameOver handleReset={handleReset} active={true} message="DRAW!"/> : null}
         </GameContent>
     );
 }
