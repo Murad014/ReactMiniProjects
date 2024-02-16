@@ -32,7 +32,7 @@ const winnerAddresses =  [
 ];
 
 
-const initialBoard = [
+const INITIAL_BOARD = [
     ["_", "_", "_"],
     ["_", "_", "_"],
     ["_", "_", "_"],
@@ -45,11 +45,11 @@ function checkWinner(){
         const cellB = cellAddresses[winnerAddress[1]];
         const cellC = cellAddresses[winnerAddress[2]];
 
-        if(initialBoard[cellA.row][cellA.col] !== "_" &&
-            initialBoard[cellA.row][cellA.col] === initialBoard[cellB.row][cellB.col] &&
-            initialBoard[cellB.row][cellB.col] === initialBoard[cellC.row][cellC.col]) {
+        if(INITIAL_BOARD[cellA.row][cellA.col] !== "_" &&
+            INITIAL_BOARD[cellA.row][cellA.col] === INITIAL_BOARD[cellB.row][cellB.col] &&
+            INITIAL_BOARD[cellB.row][cellB.col] === INITIAL_BOARD[cellC.row][cellC.col]) {
 
-            return initialBoard[cellB.row][cellB.col];
+            return INITIAL_BOARD[cellB.row][cellB.col];
         }
 
     }
@@ -65,25 +65,28 @@ function getActivePlayer(moves){
     return currentPlayer;
 }
 
+function setCellClick(moves){
+    for(const move of moves){
+        const {row, col, player} = move;
+        INITIAL_BOARD[row][col] = player;
+    }
+
+}
+
 function App() {
     const [moves, changeMoves] = useState([]);
     const [movesModal, changeModal] = useState(false);
     const [playerNames, setPlayerNames] = useState({
-        "X": "Player 1",
-        "O": "Player 2",
+        X: "Player 1",
+        O: "Player 2",
     });
 
+    setCellClick(moves);
     const activePlayer = getActivePlayer(moves);
     const winner = checkWinner();
 
-    for(const move of moves){
-        const {row, col, player} = move;
-        initialBoard[row][col] = player;
-    }
-
-
     function handleCurrentSymbol(rowIndex, colIndex){
-        if(initialBoard[rowIndex][colIndex] !== "_")
+        if(INITIAL_BOARD[rowIndex][colIndex] !== "_")
             return;
 
         changeMoves((prevMoves) => {
@@ -122,7 +125,7 @@ function App() {
         // Reset initial board
         for(let row = 0; row < 3; row++)
             for(let col = 0; col < 3; col++)
-                initialBoard[row][col] = "_";
+                INITIAL_BOARD[row][col] = "_";
         setModelClose();
 
     }
@@ -134,7 +137,7 @@ function App() {
             <HeadParagraph className="headParagraph" />
             <PlayersInputs id="playerInputs" className="player-inputs"  currentSymbol={activePlayer}
             handePlayerNamesChanges={handePlayerNamesChange}/>
-            <GameBoard moves={moves} handleSymbolChange={handleCurrentSymbol} board={initialBoard}/>
+            <GameBoard moves={moves} handleSymbolChange={handleCurrentSymbol} board={INITIAL_BOARD}/>
             <Buttons onModalClick={setModalOpen} handleReset={handleReset}/>
             <MoveContent moves={moves} active={movesModal} closeClick={setModelClose} />
             {winner !== "_" ? <GameOver handleReset={handleReset} active={true} message={playerNames[winner] + " is winner!"}/> : null}
