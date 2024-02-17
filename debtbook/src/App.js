@@ -6,7 +6,7 @@ import Content from "./components/content/Content";
 import {useState} from "react";
 
 function App() {
-    const [contentType, setContentType] = useState(<Home />);
+    const [contentType, setContentType] = useState(<Home handleSetContentType={handleSetContentType}/>);
 
     function handleSetContentType(contentType){
         setContentType(contentType);

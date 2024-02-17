@@ -1,26 +1,43 @@
+import Home from "../Home";
+import Input from "./Input";
+import Button from "./Button";
+import HeaderCard from "./HeaderCard";
+import {useRef, useState} from "react";
 
-export default function Form({title, ...props}){
+export default function Form({title, handleSetContentType, ...props}){
+
+    const firstName = useRef();
+    const lastName = useRef();
+    const email = useRef();
+    const phone = useRef();
+
+    function saveButtonClick(){
+
+    }
+
+    function cancelButtonClick(){
+
+
+    }
+
     return (
         <div className="text-xl m-auto shadow-xl">
             <div className="p-5 flex flex-col">
-                <h1 className="m-auto mb-2">Add Customer</h1>
-                <hr className="border-t border-gray-300 mb-5"/>
 
-                <label className="text-xl">First name</label>
-                <input type="text" className="border-2 p-1 text-lg w-80 mb-5"/>
+                <HeaderCard cardName={title} />
 
-                <label className="text-xl">Last name</label>
-                <input type="text" className="border-2 p-1 text-lg w-80 mb-5"/>
+                <Input ref={firstName} label="First name"/>
+                <Input ref={lastName} label="Last name" />
+                <Input ref={email} label="Email" />
+                <Input ref={phone} label="Phone" />
 
-                <label className="text-xl">Email</label>
-                <input type="text" className="border-2 p-1 text-lg w-80 mb-5"/>
-
-                <label className="text-xl">Phone</label>
-                <input type="text" className="border-2 p-1 text-lg w-80"/>
-
-                <div className="flex flex-row">
-                    <button className="flex-1 rounded-2xl border-2 mt-2 hover:bg-gray-200 p-2 mr-1">Save</button>
-                    <button className="flex-1 rounded-2xl border-2 mt-2 hover:bg-gray-200 p-2">Cancel</button>
+                <div className="flex flex-row mt-4">
+                    <Button handleAction={saveButtonClick}>
+                        Save
+                    </Button>
+                    <Button handleAction={cancelButtonClick}>
+                        Cancel
+                    </Button>
                 </div>
 
             </div>
