@@ -9,7 +9,7 @@ export default function Home({handleSetContentType}){
             <h1 className="text-2xl">Add New Customer</h1>
             <button
                 className="rounded-2xl w-56 border-2 mt-2 bg-gray-900 text-stone-50 p-2 hover:bg-gray-700"
-                onClick={() => handleSetContentType(<Form />)}>Add
+                onClick={() => handleSetContentType(<Form title="Add Customer" handleSetContentType={handleSetContentType}/>)}>Add
             </button>
         </div>
     );

@@ -10,13 +10,17 @@ export default function Sidebar({handleSetContentType}){
             <Header />
             <SidebarList>
                 <li className="text-stone-50 p-4 hover:bg-gray-600 hover:rounded-3xl"
-                    onClick={() => handleSetContentType(<Home handleSetContentType={handleSetContentType} />)}>
+                    onClick={() => handleSetContentType(<Home handleSetContentType={handleSetContentType}/>)}>
                     Home
                 </li>
 
                 <li className="text-stone-50 p-4 hover:bg-gray-600 hover:rounded-3xl"
-                    onClick={() => handleSetContentType(<Form />)}>
+                    onClick={() => handleSetContentType(<Form title="Add Customer" handleSetContentType={handleSetContentType}/>)}>
                     Add Customer
+                </li>
+
+                <li className="text-stone-50 p-4 hover:bg-gray-600 hover:rounded-3xl">
+                    Customer List
                 </li>
 
             </SidebarList>
