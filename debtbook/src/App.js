@@ -1,12 +1,33 @@
-import addCustomer from "./assets/images/add.png" ;
 import Sidebar from "./components/sidebar/Sidebar";
 import Home from "./components/Home";
-import Form from "./components/form/Form";
-import Content from "./components/content/Content";
 import {useState} from "react";
 
+const exampleCustomers = [
+    {
+        name: "Murad",
+        surname: "Guliyev",
+        email: "quliyev.murad@yahoo.com",
+        phone: "+994514617033",
+        paymentList: [
+            {
+                paymentDescription: "Theory of Everything Book",
+                paymentAmount: -20,
+                paymentDate: "17-02-2024"
+            },
+            {
+                paymentDescription: "Theory of Everything Book",
+                paymentAmount: 20,
+                paymentDate: "17-02-2024"
+            }
+
+        ]
+    }
+];
+
 function App() {
-    const [contentType, setContentType] = useState(<Home handleSetContentType={handleSetContentType}/>);
+    const [customers, setCustomers] = useState([]);
+    const [contentType, setContentType] = useState(<Home handleSetContentType={handleSetContentType}
+                                                         customers={customers}/>);
 
     function handleSetContentType(contentType){
         setContentType(contentType);
@@ -15,7 +36,7 @@ function App() {
 
     return (
       <div className="h-screen justify-items-stretch sm:flex sm:flex-col md:flex-row">
-          <Sidebar handleSetContentType={handleSetContentType}/>
+          <Sidebar handleSetContentType={handleSetContentType} customers={customers}/>
           {contentType}
       </div>
 

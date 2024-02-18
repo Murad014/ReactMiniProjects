@@ -1,15 +1,18 @@
 import addCustomer from "../assets/images/add.png";
-import Form from "./form/Form";
+import AddForm from "./form/AddForm";
 
 
-export default function Home({handleSetContentType}){
+export default function Home({handleSetContentType, customers}){
     return (
         <div className="m-auto">
-            <img src={addCustomer} className="mb-5" />
+            <img src={addCustomer} className="mb-5"  alt="image"/>
             <h1 className="text-2xl">Add New Customer</h1>
             <button
                 className="rounded-2xl w-56 border-2 mt-2 bg-gray-900 text-stone-50 p-2 hover:bg-gray-700"
-                onClick={() => handleSetContentType(<Form title="Add Customer" handleSetContentType={handleSetContentType}/>)}>Add
+                onClick={() => handleSetContentType(<AddForm title="Add Customer"
+                                                             handleSetContentType={handleSetContentType}
+                                                             customers={customers}
+                />)}>Add
             </button>
         </div>
     );
