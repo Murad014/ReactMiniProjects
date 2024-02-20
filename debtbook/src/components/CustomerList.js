@@ -1,29 +1,26 @@
 import SimpleTable from "./tables/SimpleTable";
 import UpdateForm from "./form/UpdateForm";
-import {useRef} from "react";
+import {useContext, useRef} from "react";
 import YesOrNoModalbox from "./modalbox/YerOrNoModalbox";
 import CustomerPaymentList from "./CustomerPaymentList";
+import {AppData} from "../data/AppData";
 
 
-export default function CustomerList({customers, handleSetContentType}){
+export default function CustomerList(){
+    const {customersData, setContentType} = useContext(AppData);
+
     const refModal = useRef();
     let removeSelectedId = null;
     function clickEdit(customerId){
         const updateForm =
-            <UpdateForm title="Update Customer"
-                                        handleSetContentType={handleSetContentType}
-                                        customer={customers[customerId]}
-                                        customers={customers}
-            />
-        handleSetContentType(updateForm);
+            <UpdateForm customer={customersData[customerId]}/>
+        setContentType(updateForm);
     }
 
     function removeCustomer(customerId){
-        customers.splice(customerId, 1);
+        customersData.splice(customerId, 1);
         closeShowModal();
-        handleSetContentType(
-            <CustomerList customers={customers} handleSetContentType={handleSetContentType} />
-        );
+        setContentType(<CustomerList />);
     }
 
     function openShowModal(customerId){
@@ -36,13 +33,13 @@ export default function CustomerList({customers, handleSetContentType}){
     }
 
     function openPaymentList(customerId){
-        const paymentList = <CustomerPaymentList paymentList={customers[customerId].paymentList} />
-        handleSetContentType(paymentList);
+        const paymentList = <CustomerPaymentList paymentList={customersData[customerId].paymentList} />
+        setContentType(paymentList);
     }
 
 
 
-    customers.map(
+    customersData.map(
         (customer, index) => {
             customer.id =  index + 1;
             customer.action=
@@ -81,9 +78,9 @@ export default function CustomerList({customers, handleSetContentType}){
 
             <div className="text-xl shadow-xl mx-auto mt-24 h-fit relative sm:rounded-lg p-2 overflow-x-auto overflow-y-auto">
                 <div className="">
-                    {customers.length === 0 ?
+                    {customersData.length === 0 ?
                         <span className="text-red-600">There is not item yet. Add customer.</span> :
-                        <SimpleTable columns={columns} data={customers}/>}
+                        <SimpleTable columns={columns} data={customersData}/>}
 
                 </div>
             </div>

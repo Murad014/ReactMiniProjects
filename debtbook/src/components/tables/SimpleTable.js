@@ -1,5 +1,6 @@
 
 export default function SimpleTable({columns, data}){
+
     return (
         <table className="w-full ">
             <thead className="text-xl border-b-2">
