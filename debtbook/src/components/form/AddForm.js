@@ -2,10 +2,12 @@ import Home from "../Home";
 import Input from "./Input";
 import Button from "./Button";
 import HeaderCard from "./HeaderCard";
-import {useRef, useState} from "react";
+import {useContext, useRef, useState} from "react";
 import {validateCustomerForm} from "../../utils/ValidaUtil";
+import {AppData} from "../../data/AppData";
 
-export default function AddForm({title, handleSetContentType, customers, ...props}){
+export default function AddForm({title,  ...props}){
+    const {customersData, updateCustomer, setContentType} = useContext(AppData);
 
     const firstNameRef = useRef();
     const lastNameRef = useRef();
@@ -26,7 +28,11 @@ export default function AddForm({title, handleSetContentType, customers, ...prop
             phone: phoneRef.current.value,
             paymentList: [ ]
         };
-        customers.push(newCustomer);
+        updateCustomer(
+            (prev) => [...prev, newCustomer]
+        );
+
+
         goHomePage();
     }
 
@@ -36,7 +42,7 @@ export default function AddForm({title, handleSetContentType, customers, ...prop
     }
 
     function goHomePage(){
-        handleSetContentType(<Home handleSetContentType={handleSetContentType} customers={customers}/>);
+        setContentType(<Home />);
     }
 
     return (
@@ -71,6 +77,3 @@ export default function AddForm({title, handleSetContentType, customers, ...prop
     );
 }
 
-function createNewCustomer(firstName, lastName, email, phone){
-    return
-}

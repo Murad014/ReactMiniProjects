@@ -1,3 +1,5 @@
+import {useContext} from "react";
+import {AppData} from "../../data/AppData";
 
 
 export default function SidebarList({children}){

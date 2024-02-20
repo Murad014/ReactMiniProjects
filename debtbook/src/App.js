@@ -1,6 +1,7 @@
 import Sidebar from "./components/sidebar/Sidebar";
 import Home from "./components/Home";
 import {useState} from "react";
+import {AppData} from "./data/AppData";
 
 const exampleCustomers = [
     {
@@ -26,19 +27,20 @@ const exampleCustomers = [
 
 function App() {
     const [customers, setCustomers] = useState([]);
-    const [contentType, setContentType] = useState(<Home handleSetContentType={handleSetContentType}
-                                                         customers={customers}/>);
-
-    function handleSetContentType(contentType){
-        setContentType(contentType);
-    }
-
+    const [contentType, setContentType] = useState(<Home />);
+    const initialContextData = {
+        customersData: customers,
+        updateCustomer: setCustomers,
+        setContentType: setContentType
+    };
 
     return (
-      <div className="h-screen justify-items-stretch sm:flex sm:flex-col md:flex-row">
-          <Sidebar handleSetContentType={handleSetContentType} customers={customers}/>
-          {contentType}
-      </div>
+        <AppData.Provider value={initialContextData}>
+            <div className="h-screen justify-items-stretch sm:flex sm:flex-col md:flex-row">
+              <Sidebar />
+              {contentType}
+            </div>
+        </AppData.Provider>
 
   );
 
